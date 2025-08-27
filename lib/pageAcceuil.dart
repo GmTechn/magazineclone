@@ -1,5 +1,7 @@
 import 'dart:ffi';
 
+import 'package:activite1/Components/textbutton.dart';
+import 'package:activite1/gestion.dart';
 import 'package:activite1/main.dart';
 
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class PageAcceuil extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xff050c31),
+        backgroundColor: Colors.pink,
         actions: [
           IconButton(
             onPressed: () {},
@@ -40,6 +42,14 @@ class PageAcceuil extends StatelessWidget {
             const partieTexte(),
             const partieIcone(),
             const partieRubrique(),
+            const SizedBox(
+              height: 10,
+            ),
+            MyTextButton(
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => GestionRedacteurs())),
+              ButtonText: 'Gérer Utilisateurs',
+            )
           ],
         ),
       ),
