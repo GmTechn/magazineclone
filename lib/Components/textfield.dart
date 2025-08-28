@@ -14,10 +14,12 @@ class MyTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextField(
+        cursorColor: Colors.pink,
+        cursorErrorColor: Colors.pink.shade100,
         controller: textfieldController,
         decoration: InputDecoration(
           labelText: textfieldtitle,
-          labelStyle: TextStyle(color: Colors.black),
+          labelStyle: const TextStyle(color: Colors.black),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(color: Colors.pink.shade100),

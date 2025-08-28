@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:activite1/Components/textbutton.dart';
 import 'package:activite1/gestion.dart';
-import 'package:activite1/main.dart';
-
 import 'package:flutter/material.dart';
 
 class PageAcceuil extends StatelessWidget {
@@ -32,25 +28,32 @@ class PageAcceuil extends StatelessWidget {
           )
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/mag.webp',
-            ),
-            const partieTitre(),
-            const partieTexte(),
-            const partieIcone(),
-            const partieRubrique(),
-            const SizedBox(
-              height: 10,
-            ),
-            MyTextButton(
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => GestionRedacteurs())),
-              ButtonText: 'Gérer Utilisateurs',
-            )
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Image.asset(
+                'assets/images/mag.webp',
+                fit: BoxFit.cover,
+              ),
+              const partieTitre(),
+              const partieTexte(),
+              const partieIcone(),
+              const partieRubrique(),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: MyTextButton(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GestionRedacteurs()),
+                  ),
+                  ButtonText: 'Gérer Utilisateurs',
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -63,7 +66,7 @@ class partieTitre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -89,11 +92,14 @@ class partieTexte extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      child: Container(
-          child: const Text(
-              'Magazine Infos est bien plus qu\'un simple magazine d\'informations. C\'est votre passerelle vers le monde, une source inestimable de connaissances et d\'actualités soigneusement sélectionnées pour vous éclairer sur les enjeux mondiaux, la culture, la science, et voir même le divertissement (le jeux).')),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30.0),
+      child: Text(
+        'Magazine Infos est bien plus qu\'un simple magazine d\'informations. '
+        'C\'est votre passerelle vers le monde, une source inestimable de connaissances '
+        'et d\'actualités soigneusement sélectionnées pour vous éclairer sur les enjeux mondiaux, '
+        'la culture, la science, et voir même le divertissement (le jeux).',
+      ),
     );
   }
 }
@@ -104,63 +110,33 @@ class partieIcone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.phone,
-                  color: Colors.pink,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'TEL',
-                  style: TextStyle(color: Colors.pink),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.email,
-                  color: Colors.pink,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'MAIL',
-                  style: TextStyle(color: Colors.pink),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.share,
-                  color: Colors.pink,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'PARTAGE',
-                  style: TextStyle(color: Colors.pink),
-                ),
-              ],
-            ),
-          )
+        children: const [
+          _IconWithLabel(icon: Icons.phone, label: 'TEL'),
+          _IconWithLabel(icon: Icons.email, label: 'MAIL'),
+          _IconWithLabel(icon: Icons.share, label: 'PARTAGE'),
         ],
       ),
+    );
+  }
+}
+
+class _IconWithLabel extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _IconWithLabel({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Icon(icon, color: Colors.pink),
+        const SizedBox(height: 5),
+        Text(label, style: const TextStyle(color: Colors.pink)),
+      ],
     );
   }
 }
@@ -171,7 +147,7 @@ class partieRubrique extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -182,9 +158,7 @@ class partieRubrique extends StatelessWidget {
               width: 170,
             ),
           ),
-          const SizedBox(
-            width: 5,
-          ),
+          const SizedBox(width: 5),
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(

@@ -101,7 +101,7 @@ class _GestionRedacteursState extends State<GestionRedacteurs> {
     final confirm = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-              backgroundColor: Colors.pink.shade50,
+              backgroundColor: const Color.fromARGB(255, 255, 241, 245),
               title: const Text(
                 'Supprimer un Rédacteur',
                 style: TextStyle(color: Colors.black),
@@ -156,6 +156,7 @@ class _GestionRedacteursState extends State<GestionRedacteurs> {
     await showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: const Color.fromARGB(255, 255, 241, 245),
               title: const Text('Modifier Rédacteur'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -220,8 +221,11 @@ class _GestionRedacteursState extends State<GestionRedacteurs> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => PageAcceuil()));
+          },
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
         ),
         backgroundColor: Colors.pink,
         title: const Text(
@@ -322,15 +326,6 @@ class _GestionRedacteursState extends State<GestionRedacteurs> {
                       ),
                     );
                   })),
-
-          Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: MyTextButton(
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PageAcceuil())),
-              ButtonText: "Page d'\Acceuil",
-            ),
-          )
         ],
       ),
     );
