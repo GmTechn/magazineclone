@@ -1,4 +1,5 @@
-import 'package:activite1/Components/textbutton.dart';
+import 'package:activite1/Components/mydrawer.dart';
+import 'package:activite1/Components/mytextbutton.dart';
 import 'package:activite1/gestion.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +10,7 @@ class PageAcceuil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-          color: Colors.white,
-        ),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Magazine Infos',
           style: TextStyle(color: Colors.white),
@@ -28,6 +25,7 @@ class PageAcceuil extends StatelessWidget {
           )
         ],
       ),
+      drawer: const MyDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -41,17 +39,6 @@ class PageAcceuil extends StatelessWidget {
               const partieTexte(),
               const partieIcone(),
               const partieRubrique(),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: MyTextButton(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => GestionRedacteurs()),
-                  ),
-                  ButtonText: 'Gérer Utilisateurs',
-                ),
-              )
             ],
           ),
         ),

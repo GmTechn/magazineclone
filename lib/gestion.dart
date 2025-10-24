@@ -1,5 +1,4 @@
-import 'package:activite1/Components/textbutton.dart';
-import 'package:activite1/Components/textfield.dart';
+import 'package:activite1/Components/mytextfield.dart';
 import 'package:activite1/Modele/redacteur.dart';
 import 'package:activite1/dbmanager.dart';
 import 'package:activite1/pageAcceuil.dart';
@@ -41,7 +40,7 @@ class _GestionRedacteursState extends State<GestionRedacteurs> {
   }
 
   Future<void> _loadUsers() async {
-    final users = await _dbManager.getAllRedacteurs();
+    final users = await _dbManager.getAllRedacteur();
     setState(() {
       _users = users;
     });
