@@ -1,6 +1,4 @@
 import 'package:activite1/Components/mydrawer.dart';
-import 'package:activite1/Components/mytextbutton.dart';
-import 'package:activite1/gestion.dart';
 import 'package:flutter/material.dart';
 
 class PageAcceuil extends StatelessWidget {
@@ -9,6 +7,7 @@ class PageAcceuil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 245, 248),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
@@ -16,7 +15,7 @@ class PageAcceuil extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.pink.shade200,
         actions: [
           IconButton(
             onPressed: () {},
@@ -28,18 +27,24 @@ class PageAcceuil extends StatelessWidget {
       drawer: const MyDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset(
-                'assets/images/mag.webp',
-                fit: BoxFit.cover,
-              ),
-              const partieTitre(),
-              const partieTexte(),
-              const partieIcone(),
-              const partieRubrique(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    'assets/images/mag.webp',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const partieTitre(),
+                const partieTexte(),
+                const partieIcone(),
+                const partieRubrique(),
+              ],
+            ),
           ),
         ),
       ),
@@ -53,20 +58,22 @@ class partieTitre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Bienvenue au Magazine Infos',
             style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Text(
             'Votre magazine numérique, votre source d\'inspiration',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -80,12 +87,13 @@ class partieTexte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0),
+      padding: EdgeInsets.all(12.0),
       child: Text(
         'Magazine Infos est bien plus qu\'un simple magazine d\'informations. '
         'C\'est votre passerelle vers le monde, une source inestimable de connaissances '
         'et d\'actualités soigneusement sélectionnées pour vous éclairer sur les enjeux mondiaux, '
         'la culture, la science, et voir même le divertissement (le jeux).',
+        style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -98,9 +106,9 @@ class partieIcone extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
+        children: [
           _IconWithLabel(icon: Icons.phone, label: 'TEL'),
           _IconWithLabel(icon: Icons.email, label: 'MAIL'),
           _IconWithLabel(icon: Icons.share, label: 'PARTAGE'),
@@ -120,9 +128,9 @@ class _IconWithLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon, color: Colors.pink),
+        Icon(icon, color: Colors.pink.shade300),
         const SizedBox(height: 5),
-        Text(label, style: const TextStyle(color: Colors.pink)),
+        Text(label, style: TextStyle(color: Colors.pink.shade300)),
       ],
     );
   }

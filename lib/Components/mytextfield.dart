@@ -22,7 +22,7 @@ class MyTextfield extends StatelessWidget {
         validator: validator,
         onSaved: onSaved,
         cursorColor: Colors.pink,
-        cursorErrorColor: Colors.pink.shade100,
+        cursorErrorColor: Colors.deepPurple,
         controller: textfieldController,
         decoration: InputDecoration(
             labelText: textfieldtitle,
@@ -36,7 +36,7 @@ class MyTextfield extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.redAccent.shade700))),
+                borderSide: const BorderSide(color: Colors.red))),
       ),
     );
   }

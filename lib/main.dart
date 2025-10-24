@@ -1,4 +1,3 @@
-import 'package:activite1/gestion.dart';
 import 'package:activite1/pageacceuil.dart';
 import 'package:firebase_core/firebase_core.dart';
 

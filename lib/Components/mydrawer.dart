@@ -17,14 +17,14 @@ class MyDrawer extends StatelessWidget {
               color: Colors.pink.shade200,
             ),
             child: const Text(
-              'Menu',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+              'Menu de Navigation',
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(
               CupertinoIcons.person_add_solid,
-              color: Colors.pink.shade300,
+              color: Colors.pink.shade200,
             ),
             title: const Text('Ajouter un Rédacteur'),
             onTap: () {
@@ -36,12 +36,14 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RedacteurInfoPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RedacteurInfoPage()));
             },
             leading: Icon(
               CupertinoIcons.doc_person_fill,
-              color: Colors.pink.shade300,
+              color: Colors.pink.shade200,
             ),
             title: const Text('Informations des Rédacteurs'),
           ),

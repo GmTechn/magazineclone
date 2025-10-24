@@ -11,7 +11,7 @@ class RedacteurInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //firebase instance generation
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     return Scaffold(
         appBar: const MyAppBar(title: 'Informations Rédacteurs'),
@@ -19,7 +19,7 @@ class RedacteurInfoPage extends StatelessWidget {
         //in real time
         body: StreamBuilder<QuerySnapshot>(
           //streaming from collection from firestore
-          stream: _firestore.collection('redacteurs').snapshots(),
+          stream: firestore.collection('redacteurs').snapshots(),
           builder: (context, snapshot) {
             //reading the connection state
             if (snapshot.connectionState == ConnectionState.done) {
@@ -30,13 +30,13 @@ class RedacteurInfoPage extends StatelessWidget {
               );
             }
             if (snapshot.hasError) {
-              return Center(
-                child: Text('Erreur : $snapshot.error'),
+              return const Center(
+                child: Text('Il y\'a une erreur.'),
               );
             }
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return const Center(
-                child: Text('Il n\'y a pas de données.'),
+                child: Text('Vous n\'avez aucun rédacteur.'),
               );
             }
 

@@ -1,5 +1,4 @@
 import 'package:activite1/Components/myappbar.dart';
-import 'package:activite1/Components/mytextbutton.dart';
 import 'package:activite1/Components/mytextfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +19,16 @@ class _ModifierRedacteurPageState extends State<ModifierRedacteurPage> {
   //firestore instance
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  //button style
+  final ButtonStyle _stylebutton = ElevatedButton.styleFrom(
+    backgroundColor: Colors.pink.shade200,
+    foregroundColor: Colors.black54,
+    elevation: 20,
+    shadowColor: Colors.pink,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
   //Firestore save
   Future<void> _enregistrerModifications() async {
     await firestore.collection('redacteurs').doc(widget.redacteurId).update({
@@ -28,6 +37,7 @@ class _ModifierRedacteurPageState extends State<ModifierRedacteurPage> {
     });
 
     return showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -97,11 +107,11 @@ class _ModifierRedacteurPageState extends State<ModifierRedacteurPage> {
           const SizedBox(
             height: 50,
           ),
-          MyTextButton(
-              onTap: () => _enregistrerModifications(),
-              ButtonText: 'Enregistrer les modifications',
-              ButtonHeight: 40,
-              ButtonWidth: 100)
+          ElevatedButton(
+            onPressed: () => _enregistrerModifications(),
+            style: _stylebutton,
+            child: const Text('Enregistrer les modifications'),
+          )
         ],
       ),
     );

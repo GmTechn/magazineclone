@@ -1,5 +1,4 @@
 import 'package:activite1/Components/myappbar.dart';
-import 'package:activite1/Components/mytextbutton.dart';
 import 'package:activite1/Components/mytextfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,12 +16,19 @@ class _AjoutRedacteurState extends State<AjoutRedacteur> {
   final _formKey = GlobalKey<FormState>();
 
   //controllers
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _specialtyController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _specialtyController = TextEditingController();
 
   //button style
-  //NB: Une classe avec un button style personalisée
-  //a déjà été créée
+  final ButtonStyle _stylebutton = ElevatedButton.styleFrom(
+    backgroundColor: Colors.pink.shade200,
+    foregroundColor: Colors.black54,
+    elevation: 20,
+    shadowColor: Colors.pink,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
 
   //instanciating firebase
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -37,6 +43,7 @@ class _AjoutRedacteurState extends State<AjoutRedacteur> {
     _specialtyController.clear();
 
     return showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -72,7 +79,7 @@ class _AjoutRedacteurState extends State<AjoutRedacteur> {
       body: Form(
           key: _formKey,
           child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -113,17 +120,16 @@ class _AjoutRedacteurState extends State<AjoutRedacteur> {
                 const SizedBox(
                   height: 50,
                 ),
-                MyTextButton(
-                  onTap: () {
+                ElevatedButton(
+                  onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       _ajouterRedacteur();
                     }
                   },
-                  ButtonText: 'Ajouter Rédacteur',
-                  ButtonHeight: 40,
-                  ButtonWidth: 100,
-                )
+                  style: _stylebutton,
+                  child: const Text('Ajouter Rédacteur'),
+                ),
               ],
             ),
           )),

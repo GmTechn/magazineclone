@@ -1,6 +1,4 @@
 import 'package:activite1/Components/myappbar.dart';
-import 'package:activite1/Components/mytextbutton.dart';
-import 'package:activite1/pageredacteurinfo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +18,7 @@ class _SupprimerRedacteurState extends State<SupprimerRedacteur> {
   Future<void> _supprimerRedacteur() async {
     await firestore.collection('redacteurs').doc(widget.redacteurId).delete();
     return showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -41,31 +40,41 @@ class _SupprimerRedacteurState extends State<SupprimerRedacteur> {
         });
   }
 
+  //button style
+  final ButtonStyle _styleButton = ElevatedButton.styleFrom(
+      backgroundColor: Colors.red,
+      foregroundColor: Colors.white,
+      shadowColor: Colors.redAccent.shade700,
+      elevation: 20,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: 'Supprimer Rédacteur'),
+      appBar: const MyAppBar(title: 'Supprimer Rédacteur'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.center, // centre horizontalement
           children: [
-            Spacer(),
+            const Spacer(),
             const Text(
-              'Êtes-vous sûre de vouloir supprimer le rédacteur?',
+              'Êtes-vous sûre de vouloir supprimer ce rédacteur?',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(
               height: 30,
             ),
-            MyTextButton(
-                onTap: () => _supprimerRedacteur(),
-                ButtonText: 'Supprimer',
-                ButtonHeight: 40,
-                ButtonWidth: 100),
-            Spacer(),
+            ElevatedButton(
+              onPressed: () => _supprimerRedacteur(),
+              style: _styleButton,
+              child: const Text(
+                'Supprimer',
+              ),
+            ),
+            const Spacer(),
           ],
         ),
       ),
