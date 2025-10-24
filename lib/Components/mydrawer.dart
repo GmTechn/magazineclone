@@ -1,5 +1,5 @@
-import 'package:activite1/pageajoutredacteur.dart';
-import 'package:activite1/pageredacteurinfo.dart';
+import 'package:activite1/pages/pageajoutredacteur.dart';
+import 'package:activite1/pages/pageredacteurinfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

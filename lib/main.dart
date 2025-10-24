@@ -1,4 +1,4 @@
-import 'package:activite1/pageacceuil.dart';
+import 'package:activite1/pages/pageacceuil.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -26,12 +26,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Magazine',
       home: PageAcceuil(),
-
-      // initialRoute: '/homepage',
-      // routes: {
-      //   '/homepage': (context) => PageAcceuil(),
-      //   '/usermanager': (context) => GestionRedacteurs(),
-      // },
     );
   }
 }

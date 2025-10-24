@@ -1,6 +1,6 @@
 import 'package:activite1/Components/myappbar.dart';
-import 'package:activite1/pagemodifierredacteur.dart';
-import 'package:activite1/pagesupprimerredacteur.dart';
+import 'package:activite1/pages/pagemodifierredacteur.dart';
+import 'package:activite1/pages/pagesupprimerredacteur.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
